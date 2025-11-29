@@ -3,759 +3,392 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>REACTED</title>
-		<link
-			rel="stylesheet"
-			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-		/>
+		<title>cl0tth</title>
 		<style>
 			* {
 				margin: 0;
 				padding: 0;
 				box-sizing: border-box;
-				font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 			}
 
 			body {
-				background: linear-gradient(135deg, #0a0a1a 0%, #1a0033 100%);
-				background-color: #151517;
-				color: #ffd700;
+				background: #000;
+				color: #fff;
+				font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
 				min-height: 100vh;
 				display: flex;
-				justify-content: center;
 				align-items: center;
-				padding: 20px;
-				overflow-x: hidden;
-				position: relative;
-			}
-
-			.particles {
-				position: fixed;
-				top: 0;
-				left: 0;
-				width: 100%;
-				height: 100%;
-				z-index: -1;
-			}
-
-			.particle {
-				position: absolute;
-				background: rgba(255, 215, 0, 0.5);
-				border-radius: 50%;
-				animation: floatParticle 15s infinite linear;
-			}
-
-			@keyframes floatParticle {
-				0% {
-					transform: translateY(100vh) rotate(0deg);
-					opacity: 0;
-				}
-				10% {
-					opacity: 0.5;
-				}
-				90% {
-					opacity: 0.5;
-				}
-				100% {
-					transform: translateY(-100px) rotate(720deg);
-					opacity: 0;
-				}
-			}
-
-			.screen-border {
-				position: fixed;
-				pointer-events: none;
-				z-index: 100;
-			}
-
-			.border-top,
-			.border-bottom {
-				position: fixed;
-				left: 0;
-				width: 100%;
-				height: 4px;
-				background: linear-gradient(90deg, transparent, #ffd700, transparent);
-			}
-
-			.border-top {
-				top: 0;
-				animation: borderPulse 3s infinite;
-			}
-
-			.border-bottom {
-				bottom: 0;
-				animation: borderPulse 3s infinite reverse;
-			}
-
-			.border-left,
-			.border-right {
-				position: fixed;
-				top: 0;
-				height: 100%;
-				width: 4px;
-				background: linear-gradient(transparent, #ffd700, transparent);
-			}
-
-			.border-left {
-				left: 0;
-				animation: borderPulseVertical 3s infinite;
-			}
-
-			.border-right {
-				right: 0;
-				animation: borderPulseVertical 3s infinite reverse;
-			}
-
-			@keyframes borderPulse {
-				0%,
-				100% {
-					opacity: 0.3;
-				}
-				50% {
-					opacity: 1;
-				}
-			}
-
-			@keyframes borderPulseVertical {
-				0%,
-				100% {
-					opacity: 0.3;
-				}
-				50% {
-					opacity: 1;
-				}
+				justify-content: center;
+				overflow: hidden;
 			}
 
 			.card {
-				background: rgba(26, 0, 51, 0.95);
-				border: 2px solid #ffd700;
-				border-radius: 20px;
-				padding: 2rem;
-				width: 100%;
-				max-width: 500px;
-				box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
-				backdrop-filter: blur(10px);
-				overflow: hidden;
+				width: 90%;
+				max-width: 600px;
+				padding: 3rem;
 				position: relative;
-				z-index: 2;
 			}
 
 			.header {
-				text-align: center;
-				margin-bottom: 1.5rem;
-				position: relative;
+				display: flex;
+				align-items: center;
+				gap: 2rem;
+				margin-bottom: 2rem;
 			}
 
 			.avatar {
-				width: 120px;
-				height: 120px;
+				width: 100px;
+				height: 100px;
 				border-radius: 50%;
-				border: 3px solid #ffd700;
-				margin: 0 auto 1rem;
 				overflow: hidden;
-				position: relative;
-				animation: float 4s ease-in-out infinite;
-				box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
 				transition: all 0.3s ease;
-				cursor: pointer;
+				flex-shrink: 0;
 			}
 
 			.avatar:hover {
-				transform: scale(1.05) rotate(5deg);
-				box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+				transform: scale(1.05);
+				border-color: #888;
+				box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 			}
 
 			.avatar img {
 				width: 100%;
 				height: 100%;
 				object-fit: cover;
+				filter: grayscale(100%) contrast(120%);
+				transition: filter 0.3s ease;
 			}
 
-			@keyframes float {
-				0%,
-				100% {
-					transform: translateY(0);
-				}
-				50% {
-					transform: translateY(-10px);
-				}
+			.avatar:hover img {
+				filter: grayscale(50%) contrast(130%);
 			}
 
-			.nickname {
+			.name-title {
+				flex: 1;
+			}
+
+			.name {
 				font-size: 2.5rem;
-				font-weight: bold;
-				margin-bottom: 0.5rem;
-				text-shadow: 0 0 15px rgba(255, 215, 0, 0.7);
+				font-weight: 300;
+				letter-spacing: -0.02em;
+				margin-bottom: 0.25rem;
+				line-height: 1;
+				transition: all 0.5s ease;
 				position: relative;
 				display: inline-block;
+				color: #fff;
 			}
 
-			.nickname::after {
-				content: "";
+			.name:hover {
+				color: transparent;
+				letter-spacing: 2px;
+			}
+
+			.name::after {
+				content: "cloth";
 				position: absolute;
-				bottom: -5px;
+				top: 0;
 				left: 0;
+				width: 0;
+				overflow: hidden;
+				color: #fff;
+				transition: width 0.5s ease;
+				white-space: nowrap;
+			}
+
+			.name:hover::after {
 				width: 100%;
-				height: 3px;
-				background: linear-gradient(90deg, transparent, #ffd700, transparent);
-				transform: scaleX(0);
+			}
+			.title {
+				font-size: 1rem;
+				color: #888;
+				font-weight: 400;
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+				transition: color 0.3s ease;
+			}
+
+			.title:hover {
+				color: #fff;
+			}
+
+			.info {
+				border-top: 1px solid #333;
+				padding-top: 2rem;
+			}
+
+			.info-item {
+				margin-bottom: 1.5rem;
+				opacity: 0;
+				animation: fadeIn 0.8s ease forwards;
 				transition: transform 0.3s ease;
 			}
 
-			.nickname:hover::after {
-				transform: scaleX(1);
+			.info-item:hover {
+				transform: translateX(10px);
 			}
 
-			.title {
-				font-size: 1.1rem;
-				color: #d4af37;
-				margin-bottom: 1rem;
+			.info-item:nth-child(1) {
+				animation-delay: 0.3s;
+			}
+			.info-item:nth-child(2) {
+				animation-delay: 0.6s;
+			}
+			.info-item:nth-child(3) {
+				animation-delay: 0.9s;
+			}
+			.info-item:nth-child(4) {
+				animation-delay: 1.2s;
 			}
 
-			.social-links {
-				display: flex;
-				justify-content: center;
-				gap: 1rem;
-				margin: 1.5rem 0;
-			}
-
-			.social-link {
-				color: #ffd700;
-				text-decoration: none;
-				padding: 0.6rem 1rem;
-				border: 2px solid #ffd700;
-				border-radius: 20px;
-				transition: all 0.3s ease;
-				display: flex;
-				align-items: center;
-				gap: 0.5rem;
-				position: relative;
-				overflow: hidden;
-			}
-
-			.social-link::before {
-				content: "";
-				position: absolute;
-				top: 0;
-				left: -100%;
-				width: 100%;
-				height: 100%;
-				background: linear-gradient(
-					90deg,
-					transparent,
-					rgba(255, 215, 0, 0.2),
-					transparent
-				);
-				transition: left 0.5s;
-			}
-
-			.social-link:hover::before {
-				left: 100%;
-			}
-
-			.social-link:hover {
-				background-color: #ffd700;
-				color: #1a0033;
-				transform: translateY(-3px);
-			}
-
-			.tabs {
-				display: flex;
-				justify-content: center;
-				gap: 0.5rem;
-				margin-bottom: 1.5rem;
-				flex-wrap: wrap;
-			}
-
-			.tab {
-				padding: 0.7rem 1.2rem;
-				background: rgba(40, 0, 80, 0.5);
-				border: 1px solid rgba(255, 215, 0, 0.3);
-				border-radius: 15px;
-				cursor: pointer;
-				transition: all 0.3s ease;
-				font-size: 0.9rem;
-				position: relative;
-				overflow: hidden;
-			}
-
-			.tab::before {
-				content: "";
-				position: absolute;
-				top: 0;
-				left: -100%;
-				width: 100%;
-				height: 100%;
-				background: linear-gradient(
-					90deg,
-					transparent,
-					rgba(255, 215, 0, 0.2),
-					transparent
-				);
-				transition: left 0.5s;
-			}
-
-			.tab:hover::before {
-				left: 100%;
-			}
-
-			.tab.active {
-				background: rgba(255, 215, 0, 0.2);
-				border-color: #ffd700;
-				box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-			}
-
-			.tab:hover:not(.active) {
-				background: rgba(60, 0, 120, 0.5);
-			}
-
-			.tab-content {
-				position: relative;
-				min-height: 200px;
-				transition: height 0.5s ease;
-			}
-
-			.content {
-				position: absolute;
-				width: 100%;
-				opacity: 0;
-				transform: translateY(20px);
-				transition: all 0.5s ease;
-				pointer-events: none;
-			}
-
-			.content.active {
-				opacity: 1;
-				transform: translateY(0);
-				pointer-events: all;
-			}
-
-			.stack-items {
-				display: flex;
-				flex-wrap: wrap;
-				justify-content: center;
-				gap: 0.7rem;
-				margin-bottom: 1rem;
-			}
-
-			.stack-item {
-				background: rgba(40, 0, 80, 0.5);
-				padding: 0.6rem 1rem;
-				border-radius: 15px;
-				border: 1px solid #ffd700;
-				transition: all 0.3s ease;
-				cursor: pointer;
-			}
-
-			.stack-item:hover {
-				transform: scale(1.05);
-				background: rgba(60, 0, 120, 0.5);
-				box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
-			}
-
-			.quote {
-				font-style: italic;
-				margin-bottom: 1rem;
-				padding: 1rem;
-				border-left: 3px solid #ffd700;
-				background: rgba(255, 215, 0, 0.05);
-				border-radius: 0 10px 10px 0;
-				transition: all 0.3s ease;
-				cursor: pointer;
-			}
-
-			.quote:hover {
-				transform: translateX(5px);
-				background: rgba(255, 215, 0, 0.1);
-			}
-
-			.project {
-				margin: 0.3em;
-				background: rgba(40, 0, 80, 0.5);
-				padding: 1.2rem;
-				border-radius: 12px;
-				border: 1px solid rgba(255, 215, 0, 0.3);
-				text-align: center;
-				animation: projectPulse 3s infinite;
-				cursor: pointer;
-				transition: all 0.3s ease;
-			}
-
-			.project:hover {
-				animation: none;
-				transform: scale(1.02);
-				border-color: #ffd700;
-				box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
-			}
-
-			@keyframes projectPulse {
-				0%,
-				100% {
-					opacity: 0.8;
-				}
-				50% {
+			@keyframes fadeIn {
+				to {
 					opacity: 1;
 				}
+			}
+
+			.label {
+				font-size: 0.75rem;
+				color: #666;
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				margin-bottom: 0.25rem;
+				transition: color 0.3s ease;
+			}
+
+			.info-item:hover .label {
+				color: #fff;
+			}
+
+			.value {
+				font-size: 1.1rem;
+				font-weight: 300;
+				transition: color 0.3s ease;
+			}
+
+			.info-item:hover .value {
+				color: #888;
+			}
+
+			.matrix {
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+				pointer-events: none;
+				z-index: -1;
+				opacity: 0.03;
+			}
+
+			.matrix-column {
+				position: absolute;
+				top: -100%;
+				font-size: 14px;
+				color: #fff;
+				font-family: "Courier New", monospace;
+				white-space: nowrap;
+				animation: matrixFall linear infinite;
+			}
+
+			@keyframes matrixFall {
+				to {
+					transform: translateY(100vh);
+				}
+			}
+
+			.cursor {
+				display: inline-block;
+				width: 2px;
+				height: 1.2em;
+				background: #fff;
+				margin-left: 2px;
+				animation: blink 1.2s infinite;
+				vertical-align: middle;
+			}
+
+			@keyframes blink {
+				0%,
+				100% {
+					opacity: 1;
+				}
+				50% {
+					opacity: 0;
+				}
+			}
+
+			.contact {
+				margin-top: 3rem;
+				padding-top: 2rem;
+				border-top: 1px solid #333;
+				text-align: center;
+			}
+
+			.tg-button {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.5rem;
+				color: #fff;
+				text-decoration: none;
+				font-size: 1rem;
+				padding: 0.8rem 1.5rem;
+				border: 1px solid #fff;
+				border-radius: 4px;
+				transition: all 0.3s ease;
+				background: transparent;
+			}
+
+			.tg-button:hover {
+				background: #fff;
+				color: #000;
+				transform: translateY(-2px);
+				box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+			}
+
+			.tg-icon {
+				font-size: 1.2rem;
 			}
 
 			.footer {
-				margin-top: 1.5rem;
+				margin-top: 2rem;
 				text-align: center;
-				color: #9370db;
+				color: #666;
 				font-size: 0.8rem;
+				transition: color 0.3s ease;
 			}
 
-			.corner {
-				position: absolute;
-				width: 15px;
-				height: 15px;
-				border: 2px solid #ffd700;
-				z-index: 3;
-			}
-
-			.corner-tl {
-				top: 10px;
-				left: 10px;
-				border-right: none;
-				border-bottom: none;
-				border-radius: 8px 0 0 0;
-			}
-
-			.corner-tr {
-				top: 10px;
-				right: 10px;
-				border-left: none;
-				border-bottom: none;
-				border-radius: 0 8px 0 0;
-			}
-
-			.corner-bl {
-				bottom: 10px;
-				left: 10px;
-				border-right: none;
-				border-top: none;
-				border-radius: 0 0 0 8px;
-			}
-
-			.corner-br {
-				bottom: 10px;
-				right: 10px;
-				border-left: none;
-				border-top: none;
-				border-radius: 0 0 8px 0;
-			}
-
-			@keyframes cornerPulse {
-				0%,
-				100% {
-					opacity: 0.7;
-				}
-				50% {
-					opacity: 1;
-				}
-			}
-
-			.corner-tl {
-				animation: cornerPulse 2s infinite;
-			}
-			.corner-tr {
-				animation: cornerPulse 2s infinite 0.5s;
-			}
-			.corner-bl {
-				animation: cornerPulse 2s infinite 1s;
-			}
-			.corner-br {
-				animation: cornerPulse 2s infinite 1.5s;
+			.footer:hover {
+				color: #888;
 			}
 
 			@media (max-width: 768px) {
-				body {
-					padding: 15px;
-					align-items: flex-start;
-					min-height: 100vh;
-					height: auto;
-				}
-
 				.card {
-					padding: 1.5rem;
-					margin: 20px 0;
-					max-width: 100%;
-					width: 100%;
+					padding: 2rem;
 				}
 
-				.avatar {
-					width: 100px;
-					height: 100px;
+				.header {
+					flex-direction: column;
+					text-align: center;
+					gap: 1rem;
 				}
 
-				.nickname {
+				.name {
 					font-size: 2rem;
 				}
 
 				.title {
-					font-size: 1rem;
-				}
-
-				.social-links {
-					flex-direction: column;
-					align-items: center;
-					gap: 0.8rem;
-				}
-
-				.social-link {
-					width: 100%;
-					justify-content: center;
-					padding: 0.8rem;
-				}
-
-				.tabs {
-					flex-direction: column;
-					gap: 0.8rem;
-				}
-
-				.tab {
-					text-align: center;
-					padding: 1rem;
-				}
-
-				.tab-content {
-					min-height: 150px;
-				}
-
-				.stack-items {
-					gap: 0.5rem;
-				}
-
-				.stack-item {
-					padding: 0.5rem 0.8rem;
 					font-size: 0.9rem;
 				}
 
-				.quote {
-					font-size: 0.95rem;
-					padding: 0.8rem;
-					margin-bottom: 0.8rem;
-				}
-
-				.project {
-					padding: 1rem;
-				}
-
-				@media (max-width: 360px) {
-					.card {
-						padding: 1rem;
-					}
-
-					.avatar {
-						width: 80px;
-						height: 80px;
-					}
-
-					.nickname {
-						font-size: 1.7rem;
-					}
-
-					.stack-item {
-						padding: 0.4rem 0.7rem;
-						font-size: 0.85rem;
-					}
-				}
-
-				@media (hover: none) {
-					.avatar:hover {
-						transform: none;
-					}
-
-					.social-link:hover,
-					.tab:hover,
-					.stack-item:hover,
-					.quote:hover,
-					.project:hover {
-						transform: none;
-						background: initial;
-						box-shadow: none;
-					}
-
-					.social-link:hover::before,
-					.tab:hover::before {
-						left: -100%;
-					}
-				}
-			}
-
-			@media (max-width: 768px) and (orientation: portrait) {
-				body {
-					padding: 10px;
-				}
-			}
-
-			@media (max-width: 900px) and (orientation: landscape) {
-				body {
-					padding: 10px;
-					align-items: flex-start;
-				}
-
-				.card {
-					margin: 10px 0;
-					max-width: 100%;
+				.avatar {
+					width: 80px;
+					height: 80px;
 				}
 			}
 		</style>
 	</head>
 	<body>
-		<div class="particles" id="particles"></div>
-
-		<div class="screen-border">
-			<div class="border-top"></div>
-			<div class="border-bottom"></div>
-			<div class="border-left"></div>
-			<div class="border-right"></div>
-		</div>
+		<div class="matrix" id="matrix"></div>
 
 		<div class="card">
-			<div class="corner corner-tl"></div>
-			<div class="corner corner-tr"></div>
-			<div class="corner corner-bl"></div>
-			<div class="corner corner-br"></div>
-
 			<div class="header">
 				<div class="avatar">
-					<img src="avatar.jpg" alt="REACTED Avatar" />
+					<!-- Вставьте свою аватарку -->
+					<img src="./clotth.jpg" alt="cl0tth" />
 				</div>
-
-				<h1 class="nickname">REACTED</h1>
-				<p class="title">Frontend Developer</p>
-
-				<div class="social-links">
-					<a href="https://t.me/pharaonjs" class="social-link" target="_blank">
-						<i class="fab fa-telegram"></i>
-						<span>Telegram</span>
-					</a>
-					<a
-						href="https://github.com/pharaonjs"
-						class="social-link"
-						target="_blank"
-					>
-						<i class="fab fa-github"></i>
-						<span>GitHub</span>
-					</a>
+				<div class="name-title">
+					<h1 class="name">cl0tth</h1>
+					<div class="title">HIS MAJESTY</div>
 				</div>
 			</div>
 
-			<div class="tabs">
-				<div class="tab" data-tab="stack">Стек</div>
-				<div class="tab active" data-tab="quotes">Цитаты</div>
-				<div class="tab" data-tab="projects">Проекты</div>
+			<div class="info">
+				<div class="info-item">
+					<div class="label">Specialization</div>
+					<div class="value">Backend Development</div>
+				</div>
+
+				<div class="info-item">
+					<div class="label">Interest</div>
+					<div class="value">Cybersecurity</div>
+				</div>
+
+				<div class="info-item">
+					<div class="label">Philosophy</div>
+					<div class="value">Code logic over thought human</div>
+				</div>
+
+				<div class="info-item">
+					<div class="label">Status</div>
+					<div class="value">
+						Available for select projects<span class="cursor"></span>
+					</div>
+				</div>
 			</div>
 
-			<div class="tab-content">
-				<div class="content" id="stack-content">
-					<div class="stack-items">
-						<span class="stack-item">React</span>
-						<span class="stack-item">JavaScript</span>
-						<span class="stack-item">TypeScript</span>
-						<span class="stack-item">Vue</span>
-						<span class="stack-item">Next</span>
-						<span class="stack-item">Python</span>
-						<span class="stack-item">Java</span>
-						<span class="stack-item">Git</span>
-					</div>
-				</div>
-
-				<div class="content active" id="quotes-content">
-					<p class="quote">"Ни одна система не является безопасной."</p>
-					<p class="quote">"Стремись к невозможному."</p>
-					<p class="quote">"Развлекайся и в сети, и в реале."</p>
-				</div>
-
-				<div class="content" id="projects-content">
-					<div
-						class="project"
-						onclick="window.open('https://pharaonjs.github.io/weather_app', '_blank')"
-					>
-						Weather_app
-					</div>
-					<div class="project">Coming soon...</div>
-				</div>
+			<div class="contact">
+				<a href="https://t.me/cl0tth" class="tg-button" target="_blank">
+					<span class="tg-icon">➤</span>
+					type me
+				</a>
 			</div>
 
 			<div class="footer">
-				<p>© 2025 REACTED</p>
+				All rights reserved and not reserved at the same time
 			</div>
 		</div>
 
 		<script>
-			document.addEventListener("DOMContentLoaded", function () {
-				const tabs = document.querySelectorAll(".tab");
-				const contents = document.querySelectorAll(".content");
-				const tabContent = document.querySelector(".tab-content");
+			// Создание матричного фона
+			const matrix = document.getElementById("matrix");
+			const chars = "01";
 
-				const particlesContainer = document.getElementById("particles");
-				const particleCount = 40;
+			function createMatrixColumn() {
+				const column = document.createElement("div");
+				column.className = "matrix-column";
 
-				for (let i = 0; i < particleCount; i++) {
-					const particle = document.createElement("div");
-					particle.classList.add("particle");
+				// Случайная позиция
+				column.style.left = Math.random() * 100 + "vw";
 
-					const size = Math.random() * 8 + 2;
-					const posX = Math.random() * 100;
-					const delay = Math.random() * 15;
-					const duration = Math.random() * 10 + 15;
+				// Случайная скорость
+				const duration = Math.random() * 10 + 10;
+				column.style.animationDuration = duration + "s";
 
-					particle.style.width = `${size}px`;
-					particle.style.height = `${size}px`;
-					particle.style.left = `${posX}vw`;
-					particle.style.top = `-5vh`;
-					particle.style.animationDelay = `${delay}s`;
-					particle.style.animationDuration = `${duration}s`;
+				// Случайная задержка
+				column.style.animationDelay = Math.random() * 5 + "s";
 
-					particlesContainer.appendChild(particle);
+				// Создаем последовательность символов
+				let content = "";
+				const length = Math.floor(Math.random() * 30) + 20;
+				for (let i = 0; i < length; i++) {
+					content += chars[Math.floor(Math.random() * chars.length)];
 				}
 
-				const setContentHeight = () => {
-					const activeContent = document.querySelector(".content.active");
-					tabContent.style.height = `${activeContent.scrollHeight}px`;
-				};
+				column.textContent = content;
+				matrix.appendChild(column);
 
-				setContentHeight();
+				// Удаляем колонку после завершения анимации
+				setTimeout(() => {
+					column.remove();
+				}, duration * 1000);
+			}
 
-				tabs.forEach((tab) => {
-					tab.addEventListener("click", () => {
-						const tabId = tab.getAttribute("data-tab");
+			// Создаем несколько колонок
+			for (let i = 0; i < 20; i++) {
+				setTimeout(createMatrixColumn, i * 200);
+			}
 
-						tabs.forEach((t) => t.classList.remove("active"));
-						contents.forEach((c) => c.classList.remove("active"));
+			// Продолжаем создавать новые колонки
+			setInterval(createMatrixColumn, 300);
 
-						tab.classList.add("active");
-						document.getElementById(`${tabId}-content`).classList.add("active");
+			// Мигающий курсор
+			const cursor = document.querySelector(".cursor");
 
-						const activeContent = document.querySelector(".content.active");
-						tabContent.style.height = `${activeContent.scrollHeight}px`;
-					});
-				});
-
-				window.addEventListener("resize", setContentHeight);
-
-				const quotes = document.querySelectorAll(".quote");
-				quotes.forEach((quote) => {
-					quote.addEventListener("click", () => {
-						quote.style.transform = "translateX(10px)";
-						setTimeout(() => {
-							quote.style.transform = "translateX(0)";
-						}, 300);
-					});
-				});
-
-				const stackItems = document.querySelectorAll(".stack-item");
-				stackItems.forEach((item) => {
-					item.addEventListener("click", () => {
-						item.style.transform = "scale(1.1)";
-						setTimeout(() => {
-							item.style.transform = "scale(1)";
-						}, 300);
-					});
-				});
-			});
+			// Случайное изменение скорости мигания
+			setInterval(() => {
+				const speed = Math.random() * 0.5 + 0.8;
+				cursor.style.animationDuration = speed + "s";
+			}, 3000);
 		</script>
 	</body>
 </html>
